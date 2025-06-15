@@ -20,12 +20,39 @@ def fourier_series_sqr(x, n):
         f += (2 / ((2*k + 1)* np.pi)) * np.sin((2*k + 1) * x)
     return f
 
+# Original sawtooth wave function (f(x) = x/π normalized to [-1,1] over period)
+def create_sawtooth_wave(x):
+    return x/np.pi
+
+# Fourier series approximation for sawtooth wave
+def fourier_series_sawtooth(x, n_terms):
+    """
+    Computes the Fourier series approximation for a sawtooth wave.
+    
+    For a sawtooth wave f(x) = x/π over [-π,π], the Fourier series is:
+    f(x) = 2/π * sum_{k=1}^{n} (-1)^(k+1)/k * sin(kx)
+    """
+    result = np.zeros_like(x)
+    
+    for k in range(1, n_terms + 1):
+        # Calculate the coefficient: (-1)^(k+1)/k
+        coefficient = ((-1)**(k+1)) / k
+        
+        # Add the term: coefficient * sin(kx)
+        result += coefficient * np.sin(k * x)
+    
+    # Multiply by the scaling factor 2/π
+    result *= 2/np.pi
+    
+    return result
+
 # Create figure and axis
 fig, ax = plt.subplots(figsize=(10, 6))
 
 # Original function
-original = create_square_wave(x_a)
-original_line, = ax.plot(x_a, original, 'b-', label='Original square wave')
+#original = create_square_wave(x_a)
+original = create_sawtooth_wave(x_a)
+original_line, = ax.plot(x_a, original, 'b-', label='Original sawtooth wave')
 
 # Initial Fourier approximation
 initial_n = 1
@@ -49,7 +76,8 @@ def animate(frame):
     n = frame + 1  # Start from n=1
     
     # Update the Fourier approximation line
-    fourier_data = fourier_series_sqr(x_a, n)
+    #fourier_data = fourier_series_sqr(x_a, n)
+    fourier_data = fourier_series_sawtooth(x_a, n)
     fourier_line.set_ydata(fourier_data)
     
     # Update the title and label
@@ -63,7 +91,7 @@ def animate(frame):
 
 # Create animation
 ani = animation.FuncAnimation(fig, animate, frames=max_terms, blit=False, interval=1000, repeat=False)
-ani.save('my_animation.gif', writer='pillow', fps=5)
+ani.save('fs_sawtooth.gif', writer='pillow', fps=5)
 
 plt.tight_layout()
 plt.show()
