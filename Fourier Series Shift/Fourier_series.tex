@@ -10,6 +10,7 @@
 \maketitle
 
 \section{Introduction}
+
 Fourier series are powerful mathematical tools that allow us to represent periodic functions as infinite sums of sine and cosine terms. Named after the French mathematician Jean-Baptiste Joseph Fourier (1768-1830), these series have profound applications in various fields including signal processing, physics, engineering, and data analysis.\\
 
 At their core, Fourier series express a periodic function as a weighted sum of sinusoids (sine and cosine functions) of different frequencies. Each sinusoid contributes to the overall shape of the function, with the weights (coefficients) determining how much each frequency component contributes to the final representation. This decomposition reveals the frequency content of a signal, providing insights into its fundamental characteristics.\\
@@ -17,39 +18,29 @@ At their core, Fourier series express a periodic function as a weighted sum of s
 In this paper, we examine what happens to the Fourier representation when a function is transformed. These transformations include horizontal shifts (time or space delays), vertical shifts (amplitude offsets), stretching, and compression of functions. When we apply these operations to a function in the time or space domain, its Fourier representation changes in specific and predictable ways.\\
 
 The shifting and scaling properties of Fourier series demonstrate elegant mathematical relationships. For instance, a horizontal shift in the time domain corresponds to a phase shift in the frequency domain, while stretching a function compresses its frequency representation and vice versa.\\
-
 This paper aims to provide an accessible introduction to Fourier series transformations, focusing on the core concepts and developing an intuition about the impact of the transformations. By understanding how these basic operations affect Fourier representations, we gain powerful insights into signal analysis and processing techniques used across multiple disciplines.\\
-
 
 \section{General Fourier Series Equations}
 
 Before examining the specific case of square waves, let's recall the general equations for Fourier series. For a periodic function $f(x)$ with period $2L$, the Fourier series representation is given by:
 
-
 \begin{enumerate}
     \item Synthesis Equation
     \begin{equation}
     f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos\left(\frac{nx\pi}{L}\right) + b_n \sin(\frac{nx\pi}{L}) \right] 
-\end{equation}
-
-
+    \end{equation}
 Where the coefficients are determined by the following analysis equations:
 
     \item Analysis Equations
-    \begin{equation}
-    a_0 = \frac{1}{L} \int_{-L}^{L} f(x) \, dx
-    \label{a0}
-    \end{equation}
-    \begin{equation}
-    a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos(\frac{nx\pi}{L}) \, dx, \quad n \geq 1
-    \end{equation}
-    \begin{equation}
-    b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin(\frac{nx\pi}{L}) \, dx, \quad n \geq 1
-    \label{bn}
-    \end{equation}
-    \end{enumerate}
+    $$a_0 = \frac{1}{L} \int_{-L}^{L} f(x) \, dx
+    \label{a0}$$
+$$a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos\left(\frac{nx\pi}{L}\right) \, dx, \quad n \geq 1$$
+$$b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin\left(\frac{nx\pi}{L}\right) \, dx, \quad n \geq 1
+    \label{bn}$$
+\end{enumerate}
 
 \section{Square Wave}
+
 The standard square wave function with period $2L$ and amplitude $A$ can be defined as:
 \begin{equation}
     f(x) = 
@@ -57,7 +48,7 @@ The standard square wave function with period $2L$ and amplitude $A$ can be defi
 -A,     -L < x < 0 \\
 A,      0 < x < L
 \end{cases}
-    \end{equation}\\
+    \end{equation}
 When we compute the Fourier coefficients for this square wave, we get:
 \begin{eqnarray}
 a_0 &=& 0 \\
@@ -67,11 +58,12 @@ b_n &=&
 \frac{4A}{n\pi}, & \text{for odd } n \\
 0, & \text{for even } n
 \end{cases}
-\end{eqnarray}\\
-Therefore, the Fourier series for the standard square wave becomes:
+\end{eqnarray}
+Therefore, the Fourier series for the standard square wave becomes: 
 \begin{equation}
-    f(x) = \frac{4A}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(\frac{n\pi x}{L}\right)
-    \end{equation}\\
+    f(x) =  \sum_{n=1,3,5,...}^{\infty} \frac{4A}{n\pi} \sin\left(\frac{n\pi x}{L}\right)
+    \end{equation}
+
 For the transformations we will look at a special case:
 \begin{equation}
 f(x) = 
@@ -80,14 +72,22 @@ f(x) =
 1, & 0 < x < \pi
 \end{cases}
 \end{equation}
+And the Fourier series is:
+$$f(x) =  \sum_{n=1,3,5,...}^{\infty} \frac{4}{n\pi} \sin\left(n x\right)$$
+These are visualized  in Figure \ref{fig: Square Wave:}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{sqaurewave.jpg}
+    \caption{Square Wave}
+    \label{fig: Square Wave}
+\end{figure}
 
 \section{Transformations of Functions}
 
-In this section, we explore how various transformations of a function affect its Fourier series representation. Using the square wave as our example, we'll examine four fundamental transformations: horizontal shifting, vertical shifting, stretching, and compression.
+In this section, we explore how various transformations of a function affect its Fourier series representation. Using the square wave as our example, we'll examine four fundamental transformations: vertical shifting, horizontal shifting, vertical scaling, and horizontal scaling.
 
-\subsection{Vertical Shifting}
-    
-Consider a vertical shift of 1, then the function becomes (as shown in \ref{fig1}):
+\subsection{Vertical Shifting}   
+Consider a vertical shift of 1, then the function becomes (as shown in figure \ref{vertical shifting}):
 \begin{equation}
 g(x) = 
 \begin{cases} 
@@ -100,10 +100,10 @@ g(x) =
         \centering
         \includegraphics[width=\textwidth]{vertical_shift.jpg}
         \caption{Vertical Shifting}
-        \label{fig1}
+        \label{vertical shifting}
     \end{figure}
     
-Using equation \ref{a0} to \ref{bn}, for this square wave we get:
+Using equations \ref{a0} to \ref{bn}, for this square wave, we get:
     \begin{equation}
     a_0 = 2
     \end{equation}
@@ -112,25 +112,24 @@ Using equation \ref{a0} to \ref{bn}, for this square wave we get:
     \end{equation}
     \begin{equation}
     b_n = \frac{4}{n\pi}
-    \end{equation}\\
-And the Fourier series becomes:
+    \end{equation}
+The Fourier series then becomes:
     \begin{equation}
-g(x) = 1 + \frac{4}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(nx\right)
-    \end{equation}\\
-    
-When the square wave alternates between $-1$ and $1$ over the interval $[-\pi, \pi]$, Its average value is $0$, meaning there's no "constant component" in the signal - it spends equal time above and below the x-axis.\\
+g(x) = 1 + \sum_{n=1,3,5,...}^{\infty} \frac{4}{n\pi} \sin\left(nx\right)
+    \end{equation}
+When the square wave alternates between $-1$ and $1$ over the interval $[-\pi, \pi]$, its average value is $0$, meaning there's no "constant component" in the signal - it spends equal time above and below the x-axis.
 
-When we vertically shift this square wave upward by $1$ unit (creating a function that alternates between $0$ and $2$), the shape of the wave remains identical - all the rises and falls occur at exactly the same places. The only difference is that the entire wave now hovers higher on the y-axis. In frequency terms:\\
+When we vertically shift this square wave upward by $1$ unit (creating a function that alternates between $0$ and $2$), the shape of the wave remains identical - all the rises and falls occur at exactly the same places. The only difference is that the entire wave now hovers higher on the y-axis. In frequency terms:
 
 \begin{enumerate}
 \item The DC component $(a_0)$ increases from $0$ to $1$, representing the new average height of the function
 \item All other Fourier coefficients remain unchanged because the pattern of variation hasn't changed at all
-\end{enumerate}\\
 
-The DC component $(a_0)$ acts like the "baseline" or "center of gravity" of our function. When you vertically shift a function, you're simply adjusting where this baseline sits, without affecting any of the actual oscillatory behavior that's captured by the other Fourier coefficients.
+\end{enumerate}\\
+The DC component $(a_0)$ acts like the "baseline" or "center of gravity" of our function. When we vertically shift a function, we are simply adjusting where this baseline sits, without affecting any of the actual oscillatory behavior that's captured by the other Fourier coefficients.
 
 \subsection{Horizontal Shifting}
-Consider a horizontal shift of $\pi$, then the function becomes (as shown in \ref{fig2}):
+Consider a horizontal shift of $\pi$, then the function becomes (as shown in \ref{fig: horizontal shift}):
 \begin{equation}
 g(x) = 
 \begin{cases} 
@@ -142,9 +141,9 @@ g(x) =
     \centering
     \includegraphics[width=\textwidth]{horizontal_shift.jpg}
     \caption{Horizontal Shifting}
-    \label{fig2}
+    \label{fig: horizontal shift}
 \end{figure}
-Using equation \ref{a0} to \ref{bn}, for this square wave we get:
+Using equations \ref{a0} to \ref{bn}, for this square wave, we get:
     \begin{equation}
     a_0 = 0
     \end{equation}
@@ -153,36 +152,35 @@ Using equation \ref{a0} to \ref{bn}, for this square wave we get:
     \end{equation}
     \begin{equation}
     b_n = \frac{-4}{n\pi}
-    \end{equation}\\
-And the Fourier series becomes:
+    \end{equation}
+The Fourier series then becomes:
 \begin{equation}
-g(x) = \frac{-4}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(nx\right)
-\end{equation}\\
-When we horizontally shift a square wave, we're essentially moving all its features along the x-axis. This transformation helps us understand a key property of Fourier series: horizontal shifts correspond to phase changes in the frequency domain.\\
+g(x) = \sum_{n=1,3,5,...}^{\infty} \frac{-4}{n\pi} \sin\left(nx\right)
+\end{equation}
+When we horizontally shift a square wave, we are essentially moving all its features along the x-axis. This transformation helps us to understand a key property of Fourier series: horizontal shifts correspond to phase changes in the frequency domain.
 
-Consider our original square wave that alternates between $-1$ and $1$. When we shift it horizontally, say by $\pi$ units, the function itself looks identical in shape but is now positioned differently along the x-axis.\\
+Consider our original square wave that alternates between $-1$ and $1$. When we shift it horizontally, say by $\pi$ units, the function itself looks identical in shape but is now positioned differently along the x-axis.
 
-Looking at the Fourier coefficients after this shift, we notice something interesting:\\
+Looking at the Fourier coefficients after this shift, we notice something interesting:
 
 \begin{enumerate}
 \item The magnitudes of all coefficients remain unchanged
 \item However, the sine coefficients $(b_n)$ change sign
 \end{enumerate}\\
 
-This sign change can be understood through the trigonometric identity $\sin(-nx) = \sin(\pi + nx)$. What this tells us is that when the sine coefficients change sign, it's equivalent to adding a phase shift of $\pi$ to each frequency component.\\
+This sign change can be understood through the trigonometric identity $\sin(-nx) = \sin(\pi + nx)$. What this tells us is that when the sine coefficients change sign, it's equivalent to adding a phase shift of $\pi$ to each frequency component.
 \begin{equation}
-g(x) = \frac{4}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(\pi+nx\right)
-\end{equation}\\
+g(x) = \sum_{n=1,3,5,...}^{\infty} \frac{4}{n\pi} \sin\left(\pi+nx\right)
+\end{equation}
+More generally, when we shift a function horizontally by some amount $h$, each frequency component in the Fourier series experiences a phase shift proportional to its frequency. The sine waves don't change their amplitudes - they simply start at different points in their cycles.
 
-More generally, when we shift a function horizontally by some amount $h$, each frequency component in the Fourier series experiences a phase shift proportional to its frequency. The sine waves don't change their amplitudes - they simply start at different points in their cycles.\\
-
-Think of it like this: if you push a wave pattern sideways, you haven't changed how the wave goes up and down (its amplitude), but you have changed when it goes up and down (its phase).\\
+Think of it like this: if you push a wave pattern sideways, you haven't changed how the wave goes up and down (its amplitude), but you have changed when it goes up and down (its phase).
 
 This is why we say a horizontal shift in the time/space domain corresponds to a phase change in the frequency domain. The energy at each frequency stays the same, but the timing information shifts.
 
-
 \subsection{Vertical Scaling}
-Consider a vertical stretch of 2, then function becomes (as shown in \ref{fig3}): 
+
+Consider a vertical stretch of 2, then the function becomes (as shown in Figure \ref{Vertical Scaling}): 
 \begin{equation}
 g(x) = 
 \begin{cases} 
@@ -194,15 +192,15 @@ g(x) =
     \centering
     \includegraphics[width=\textwidth]{vertical_scaling.png}
     \caption{Vertical Scaling}
-    \label{fig3}
+    \label{Vertical Scaling}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{vertical_stem_stretch.jpg}
     \caption{Change in $b_n$}
-    \label{Figure 4}
+    \label{vertical_stem_stretch}
 \end{figure}
-Using equation \ref{a0} to \ref{bn}, for this square wave we get:
+Using equations \ref{a0} to \ref{bn}, for this square wave, we get:
     \begin{equation}
     a_0 = 0
     \end{equation}
@@ -211,30 +209,29 @@ Using equation \ref{a0} to \ref{bn}, for this square wave we get:
     \end{equation}
     \begin{equation}
     b_n = \frac{8}{n\pi}
-    \end{equation}\\
-And the Fourier series becomes:
+    \end{equation}
+The Fourier series then becomes:
     \begin{equation}
-g(x) = \frac{8}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(nx\right)
-    \end{equation}\\
-    
-When we vertically scale a function, we're essentially making its excursions from the x-axis more dramatic. For our square wave that originally oscillated between $-1$ and $1$, a vertical scaling by a factor of $2$ creates a new function that oscillates between $-2$ and $2$.\\
+g(x) = \sum_{n=1,3,5,...}^{\infty} \frac{8}{n\pi} \sin\left(nx\right)
+    \end{equation}
+When we vertically scale a function, we're essentially making its excursions from the x-axis more dramatic. For our square wave that originally oscillated between $-1$ and $1$, a vertical scaling by a factor of $2$ creates a new function that oscillates between $-2$ and $2$.
 
-Looking at the Fourier coefficients after this transformation, we observe a direct and intuitive relationship:\\
+Looking at the Fourier coefficients after this transformation, we observe a direct and intuitive relationship:
 
 \begin{enumerate}
 \item All Fourier coefficients $(b_n)$ are scaled by exactly the same factor $(2)$
-\item The overall shape or "profile" of the frequency spectrum remains unchanged
+\item The overall shape or "profile" of the frequency spectrum remains unchanged\\
 \end{enumerate}
-The stem plot (\ref{Figure 4}) visually confirms this relationship. Looking at the original square wave's $b_n$ coefficients alongside the scaled version's coefficients, we can see that each frequency component has been amplified by the same factor of $2$. The taller stems in the scaled function's plot are exactly twice as high as the corresponding stems in the original function's plot.\\
+The stem plot (Figure \ref{vertical_stem_stretch}) visually confirms this relationship. Looking at the original square wave's $b_n$ coefficients alongside the scaled version's coefficients, we can see that each frequency component has been amplified by the same factor of $2$. The taller stems in the scaled function's plot are exactly twice as high as the corresponding stems in the original function's plot.
 
-This makes intuitive sense if we think about what the Fourier coefficients represent. Each coefficient tells us "how much" of a particular frequency component is present in our function. When we amplify the function itself, we're proportionally amplifying all of its constituent components.\\
+This makes intuitive sense if we think about what the Fourier coefficients represent. Each coefficient tells us "how much" of a particular frequency component is present in our function. When we amplify the function itself, we're proportionally amplifying all of its constituent components.
 
-The stem plot elegantly demonstrates this preservation of relative strengths between frequency components. The characteristic "decreasing staircase" pattern of the square wave's Fourier coefficients (where $b_n = 0$ for even $n$, and $b_n = \frac{4}{n\pi})$ for odd $n$) maintains its distinctive shape, just scaled to a larger magnitude.\\
+The stem plot elegantly demonstrates this preservation of relative strengths between frequency components. The characteristic "decreasing staircase" pattern of the square wave's Fourier coefficients (where $b_n = 0$ for even $n$, and $b_n = \frac{4}{n\pi})$ for odd $n$) maintains its distinctive shape, just scaled to a larger magnitude.
 
 This relationship highlights an important property of Fourier series: linear scaling in the time/space domain corresponds directly to linear scaling in the frequency domain, preserving the relative "fingerprint" of the function's frequency content.  
 
 \subsection{Horizontal Scaling}
-Consider a horizontal scale of 2, then the function becomes (as shown in \ref{fig5}) :
+Consider a horizontal scale of 2, then the function becomes (as shown in Figure \ref{Horizontal_Scaling}) :
 \begin{equation}
 g(x) = 
 \begin{cases} 
@@ -246,15 +243,15 @@ g(x) =
     \centering
     \includegraphics[width=\textwidth]{horizontal_scaling.jpg}
     \caption{Horizontal Scaling}
-    \label{fig5}
+    \label{Horizontal_Scaling}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{horizontal_stem_stretch.jpg}
     \caption{Change in $b_n$}
-    \label{figure 6}
+    \label{fig:horizontal_stem_stretch}
 \end{figure}
-Using equation \ref{a0} to \ref{bn}, for this square wave we get:
+Using equations \ref{a0} to \ref{bn}, for this square wave, we get:
     \begin{equation}
     a_0 = 0
     \end{equation}
@@ -263,139 +260,118 @@ Using equation \ref{a0} to \ref{bn}, for this square wave we get:
     \end{equation}
     \begin{equation}
     b_n = \frac{4}{\pi}
-    \end{equation}\\
-And the Fourier series becomes:
-
-    \begin{equation}
-g(x) = \frac{4}{\pi} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n} \sin\left(\frac{nx}{2}\right)
-    \end{equation}\\
-When we horizontally scale our square wave, stretching it from the interval $[-\pi, \pi]$ to $[-2\pi, 2\pi]$, we're essentially "spreading out" the function along the x-axis. This transformation provides fascinating insights into how the frequency content adapts when a signal is stretched or compressed in time/space.\\
+    \end{equation}
+The Fourier series then becomes:
+\begin{equation}
+g(x) = \sum_{n=1,3,5,...}^{\infty} \frac{4}{n\pi} \sin\left(\frac{nx}{2}\right)
+\end{equation}
+When we horizontally scale our square wave, stretching it from the interval $[-\pi, \pi]$ to $[-2\pi, 2\pi]$, we're essentially "spreading out" the function along the x-axis. This transformation provides fascinating insights into how the frequency content adapts when a signal is stretched or compressed in time/space.
 
 Looking at the accompanying stem plots of the Fourier coefficients before and after this horizontal scaling, we observe a striking relationship:\\
 \begin{enumerate}
 \item The non-zero coefficients now appear at half the frequencies (at $n/2$ instead of at $n$).
 \item The amplitudes of these coefficients are doubled.
 \end{enumerate}
-When we stretch a function horizontally by a factor of $2$, we're making all its features occur over twice the original interval. This means its oscillations happen at half the original frequency. The stem plot clearly illustrates this effect - where the original square wave had coefficients at $n = 1, 3, 5, 7...$, the stretched version has its significant coefficients at $n = 0.5, 1.5, 2.5, 3.5...$.\\
+When we stretch a function horizontally by a factor of $2$, we're making all its features occur over twice the original interval. This means its oscillations happen at half the original frequency. The stem plot clearly illustrates this effect - where the original square wave had coefficients at $n = 1, 3, 5, 7...$, the stretched version has its significant coefficients at $n = 0.5, 1.5, 2.5, 3.5...$
 
-This frequency compression makes intuitive sense: if a pattern takes twice as long to repeat, its frequency is halved.\\
+This frequency compression makes intuitive sense: if a pattern takes twice as long to repeat, its frequency is halved.
 
-However, the doubling of amplitude might seem less intuitive at first. This occurs because the total "energy" of the signal is preserved, but is now concentrated in fewer frequency components. The stem plot shows taller stems, but fewer of them are active in any given frequency range.\\
+However, the doubling of amplitude might seem less intuitive at first. This occurs because the total "energy" of the signal is preserved, but is now concentrated in fewer frequency components. The stem plot shows taller stems, but fewer of them are active in any given frequency range.
 
-Another way to understand this: the Fourier transform of a scaled function $f(ax)$ is related to the original function's transform by a factor of $1/|a|$. When we stretch our function (a = 1/2), we get a compressed and amplified frequency spectrum.\\
+Another way to understand this: the Fourier transform of a scaled function $f(ax)$ is related to the original function's transform by a factor of $1/|a|$. When we stretch our function (a = 1/2), we get a compressed and amplified frequency spectrum.
 
-The stem plot (\ref{figure 6} beautifully captures this dual effect - we can visually trace how each frequency component in the original function "migrates" to a lower frequency position while growing in amplitude in the stretched version.\\
+The stem plot (as visualized in figure \ref{fig:horizontal_stem_stretch}) beautifully captures this dual effect - we can visually trace how each frequency component in the original function "migrates" to a lower frequency position while growing in amplitude in the stretched version.
 
 This relationship reveals a fundamental principle in signal processing: time/space scaling and frequency scaling have an inverse relationship, embodying the uncertainty principle that governs many fields from communications to quantum mechanics.
 
 \section{Generalization of Fourier Series Transformations}
-In this section, we explore how the transformation principles we established for square waves can be generalized to other periodic functions. We'll examine how these transformations apply to different common functions, demonstrating the universality of these principles.
 
-\subsection{General Principles of Transformation}
-The transformation principles we've established are not limited to square waves but apply to any periodic function $f(x)$. We can repeat this for other waves and we find that its similar.
+To deepen our intuitive understanding of how Fourier series respond to transformations, let's examine triangular and sawtooth waves. These different wave shapes help us confirm that the principles we've discovered aren't specific to square waves, but represent fundamental properties of Fourier analysis.
 
-    \begin{enumerate}
-    \item Triangular Wave\\
-Equation of the function: 
+\subsection{Triangular Wave}
 
+Unlike the square wave which contains only odd harmonics due to its half-wave symmetry, the triangular wave  is an even function that exhibits symmetry about the y-axis where $f(-x) = f(x)$. This fundamental symmetry means its Fourier series contains only the constant term $(a_0)$ and cosine terms $(a_n)$, with all sine terms $(b_n)$ vanishing completely. 
+
+Equation of the function:
 \begin{equation}
-f(x) = 
-\begin{cases} 
-|x|, & -\pi \leq x \leq \pi \\
-\end{cases}
+f(x) = |x|,  -\pi \leq x \leq \pi
 \end{equation}
 
-The triangular wave with period $2L$ and amplitude $A$ has the Fourier series:
+The Fourier series:
+$$g(x) = \frac{\pi}{2} +\sum_{n=1,3,5,...}^{\infty}\frac{-4}{\pi n^2}\cos(nx)$$
 
-$$f(x) = \frac{8A}{\pi^2} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n^2} \sin\left(\frac{n\pi x}{L}\right)$$
+Vertical shift (Range $0$ to $2$, Period $-\pi$ to $\pi$):
+$$g(x) = 1 + \frac{\pi}{2} +\sum_{n=1,3,5,...}^{\infty}\frac{-4}{\pi n^2}\cos(nx)$$
+Only the constant term changes, increasing by exactly the shift amount (from $\pi/2$ to $\pi/2 + 1$).
 
-Applying a horizontal shift:
+Horizontal shift (Range $-1$ to $1$, Period $0$ to $2\pi$):
+$$g(x) = \frac{\pi}{2} + \sum_{n=1,3,5,...}^{\infty}\frac{-4}{\pi n^2}\cos(n(x-\pi))$$
+The cosine arguments change from $nx$ to $n(x-π)$, representing a phase shift while preserving the coefficients' magnitudes.
 
-$$g(x) = \frac{8A}{\pi^2} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n^2} \sin\left(\frac{n\pi (x-x_0)}{L}\right)$$
+Vertical scaling (Range $-2$ to $2$, Period $-\pi$ to $\pi$):
+$$g(x) = \pi + \sum_{n=1,3,5,...}^{\infty}\frac{-8}{\pi n^2}\cos(nx)$$
+All coefficients are scaled by the same factor (from $-4/(n^2\pi)$ to $-8/(n^2\pi)$ when doubling the amplitude)
 
-Applying a vertical shift:
+Horizontal scaling (Range $-1$ to $1$, Period $-2\pi$ to $2\pi$):
+$$g(x) = \frac{\pi}{4} +\sum_{n=1,3,5,...}^{\infty}\frac{-4}{\pi n^2}\cos\left(\frac{nx}{2}\right)$$
+The frequency is compressed ($nx$ becomes $nx/2$) and the constant term is adjusted (from $\pi/2$ to $\pi/4$)
 
-$$g(x) + \frac{8A}{\pi^2} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n^2} \sin\left(\frac{n\pi x}{L}\right)$$
+\subsection{Sawtooth wave}
 
-Applying horizontal scaling by factor $a$:
+The sawtooth wave is an odd function, exhibiting anti-symmetry about the origin where $f(-x) = -f(x)$. This places it in the same symmetry category as the square wave.\\
 
-$$g(x) = \frac{8A}{\pi^2} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n^2} \sin\left(\frac{n\pi ax}{L}\right)$$
-
-Applying vertical scaling by factor $B$:
-
-$$g(x) = \frac{8BA}{\pi^2} \sum_{n=1,3,5,...}^{\infty} \frac{1}{n^2} \sin\left(\frac{n\pi x}{L}\right)$$
-
-Note that while the coefficients differ from the square wave (decreasing as $1/n^2$ rather than $1/n$), the transformation principles apply identically.
-
-    \item Sawtooth Wave\\
-Equation of the function: 
-
+Equation of the function:
 \begin{equation}
-f(x) = 
-\begin{cases} 
-\frac{x}{\pi}, & -\pi \leq x < \pi \\
-f(x + 2\pi), & \text{otherwise}
-\end{cases}
+f(x) = x, \quad x \in [-\pi, \pi]
 \end{equation}
 
-The sawtooth wave with period $2L$ and amplitude $A$ has the Fourier series:
+The Fourier series:
+$$g(x) = \sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n} \sin(nx)$$
 
-$$f(x) = \frac{2A}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin\left(\frac{n\pi x}{L}\right)$$
+Vertical shift (Range $0$ to $2$, Period $-\pi$ to $\pi$):
+$$g(x) = 1 + \sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n} \sin(nx)$$
+Introduces a constant term equal to the shift amount, while all sine coefficients remain unchanged.
 
-When applying our transformations:\\
-Horizontal shift: Phase shifts are introduced to each harmonic\\
-Vertical shift: Only adds a constant term\\
-Horizontal scaling: Changes the effective period and frequency spacing\\
-Vertical scaling: Multiplies all coefficients by the scaling factor\\
+Horizontal shift (Range $-1$ to $1$, Period $0$ to $2\pi$):
+$$g(x) = \sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n} \sin(n(x-\pi))$$
+Changes $\sin(nx)$ to $\sin(n(x-\pi)$), representing a phase shift.
 
-Note that unlike the square wave, the sawtooth wave contains all harmonics, not just odd ones.
-    \end{enumerate}
+Vertical scaling (Range $-2$ to $2$, Period $-\pi$ to $\pi$):
+$$g(x) = 2\sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n} \sin(nx)$$
+All coefficients are multiplied by the scaling factor.
 
-If I have a horizontal shift, then $g(x) = f(x-k)$. So, now $f(x-k) = g(x)$! Now I can see the general principle.
+Horizontal scaling (Range $-1$ to $1$, Period $-2\pi$ to $2\pi$):
+$$g(x) = \frac{1}{2}\sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n} \sin\left(\frac{nx}{2}\right)$$
+The frequency is compressed ($nx$ becomes $nx/2$) and the coefficients are scaled.
 
-By doing a transform we can calculate $a_0$, $a_n$ and $b_n$ or we can apply to the Fourier series definition and get the same result.
+Thus, we can see the behavior of the Fourier series of the Sawtooth and triangle functions under linear transforms is the same as than of the square wave. Is this true in general?
 
-And therefore, these are the formulae:
-\begin{enumerate}
- \item Horizontal Shifting Formulation
-    
-    \begin{equation}
-    f(x-x_0) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos\left(\frac{n\pi (x-x_0)}{L}\right) + b_n \sin\left(\frac{n\pi (x-x_0)}{L}\right) \right]
-    \end{equation}
+When we apply a horizontal shift to a function, creating $g(x) = f(x-k)$, this transformation manifests in the Fourier domain in a predictable way. Instead of recalculating the coefficients from first principles, we can directly transform the original Fourier series.
 
+For a function $f(x)$ with Fourier series: 
+$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[a_n \cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right)\right]$$
+A vertical shift is defined as:
+$$g(x) = f(x)+ C = \frac{a_0}{2}+ C + \sum_{n=1}^{\infty}\left [a_n \cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right)\right]$$
+As expected, the vertical shift results only in a change of the constant term. 
 
-\item Vertical Shifting Formulation
-    
-    \begin{equation}
-   f(x)+C = \frac{a_0+2C}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right) \right]
-    \end{equation}
+The horizontal shift property gives us:
 
-\item Stretching and Compression Formulation
+$$g(x) = f(x-k) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left [a_n \cos\left(\frac{n\pi (x-k)}{L}\right) + b_n \sin\left(\frac{n\pi (x-k)}{L}\right)\right]$$
+which is a phase change while the coefficients do not change.
 
-    \begin{equation}
-f(ax) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos\left(\frac{n\pi ax}{L}\right) + b_n \sin\left(\frac{n\pi ax}{L}\right) \right]
-    \end{equation}
+A vertical scale of a factor of $k$ can be represented as:
 
-\item Amplitude Scaling Formulation
+$$g(x) = kf(x) = \frac{ka_0}{2} + \sum_{n=1}^{\infty} \left[ ka_n \cos\left(\frac{n\pi x}{L}\right) + kb_n \sin\left(\frac{n\pi x}{L}\right) \right]$$
+the coefficients are scaled by a factor of $k$, while the frequencies do not change.
 
-    \begin{equation}
-Bf(x) = \frac{Ba_0}{2} + \sum_{n=1}^{\infty} \left[ Ba_n \cos\left(\frac{n\pi x}{L}\right) + Bb_n \sin\left(\frac{n\pi x}{L}\right) \right]
-    \end{equation}
+Finally, a horizontal scale of a factor of $k$ can be computed as:
+$$g(x) = f(kx) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos\left(\frac{n\pi kx}{L}\right) + b_n \sin\left(\frac{n\pi kx}{L}\right) \right]$$
+The frequencies are scaled by the same factor and the coefficients remain unchanged. 
 
-\end{enumerate}
-
-These principles remain valid regardless of the specific function being transformed.
-
-These principles can be summarized as:
-
-\begin{align}
-\text{Horizontal Shift: affects phase but not magnitude} \\
-\text{Vertical Shift: only affects the constant term } a_0 \\
-\text{Horizontal Scaling: changes period and frequency spacing} \\
-\text{Vertical Scaling: scales all coefficients equally}
-\end{align}
+This demonstrates the elegant principle that we can either transform the function first and then calculate its Fourier coefficients, or transform the original Fourier series directly - both approaches yield identical results, illustrating the linearity and shift properties of the Fourier transform.
 
 \section{Conclusion}
+
 The transformation principles we have explored throughout this paper—horizontal shifting, vertical shifting, stretching, and compression—represent fundamental operations that can be applied to any function with a valid Fourier series representation. While we used the square wave as our primary example due to its straightforward Fourier series, these principles extend universally.\\
 
 The beauty of Fourier analysis lies in this consistency. Whether we are working with square waves, triangular waves, sawtooth functions, or arbitrary periodic signals, the mathematical relationships governing how Fourier coefficients change under transformation remain the same. A horizontal shift always introduces phase changes while preserving magnitudes. A vertical shift only affects the constant term. Horizontal scaling alters the period and frequency spacing. Vertical scaling multiplies all coefficients equally.\\
