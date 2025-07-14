@@ -33,7 +33,6 @@ def bn_sqr(n):
     return 2/(n*np.pi)
 
 ### Sawtooth
-
 # Original sawtooth wave function (f(x) = x/π normalized to [-1,1] over period)
 def create_sawtooth_wave(x):
     return x/np.pi
@@ -57,23 +56,37 @@ def an_triangle(n):
 def bn_triangle(n):
     return 0
 
+###Rectified sine wave 
+
+def create_rectified_sine_wave(x):
+    return np.abs(np.sin(x))
+
+def an_rectified_sine(n):
+    if n % 2 == 0:
+        return (-4 / (np.pi * (n**2 - 1))) 
+    return 0
+
+def bn_rectified_sine(n):
+    return 0
+
 # Create figure and axis
 fig, ax = plt.subplots(figsize=(10, 6))
 
 # Original function
 #original = create_square_wave(x_a)
 #original = create_sawtooth_wave(x_a)
-original = create_triangle_wave(x_a)
-original_line, = ax.plot(x_a, original, 'b-', label='Original Triangle wave')
+#original = create_triangle_wave(x_a)
+original = create_rectified_sine_wave(x_a)
+original_line, = ax.plot(x_a, original, 'b-', label='Original Rectified sine wave')
 
 # Initial Fourier approximation
 initial_n = 1
-fourier_line, = ax.plot(x_a, create_triangle_wave(x_a), 'r-', 
+fourier_line, = ax.plot(x_a, create_rectified_sine_wave(x_a), 'r-', 
                        label=f'Fourier approximation (n={initial_n})')
 
 
 # Set up the plot
-#ax.set_ylim(-1.5, 1.5)
+ax.set_ylim(-1.5, 1.5)
 ax.set_xlim(-2*np.pi, 2*np.pi)
 ax.set_xlabel('x')
 ax.set_ylabel('f(x)')
@@ -93,11 +106,12 @@ def animate(frame):
     #fourier_data = fourier_series_sawtooth(x_a, n)
     #fourier_data = fs_synthesis(1, an_sqr, bn_sqr, np.pi, n, x_a )
     #fourier_data = fs_synthesis(0, an_st, bn_st, 2*np.pi, n, x_a )
-    fourier_data = fs_synthesis(np.pi, an_triangle, bn_triangle, 2*np.pi, n, x_a )
+    #fourier_data = fs_synthesis(np.pi, an_triangle, bn_triangle, 2*np.pi, n, x_a )
+    fourier_data = fs_synthesis(4/np.pi, an_rectified_sine, bn_rectified_sine, 2*np.pi, n, x_a )
     fourier_line.set_ydata(fourier_data)
     
     # Update the title and label
-    ax.set_title(f'Triangle wave and its Fourier approximation with {n} term(s)')
+    ax.set_title(f'Rectified sine wave and its Fourier approximation with {n} term(s)')
     fourier_line.set_label(f'Fourier approximation (n={n})')
     
     # Update legend
@@ -107,7 +121,7 @@ def animate(frame):
 
 # Create animation
 ani = animation.FuncAnimation(fig, animate, frames=max_terms, blit=False, interval=500, repeat=False)
-ani.save('fs_triangle.gif', writer='pillow', fps=5)
+ani.save('fs_rectified_sine.gif', writer='pillow', fps=5)
 
 plt.tight_layout()
 plt.show()
